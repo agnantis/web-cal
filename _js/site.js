@@ -57,9 +57,7 @@ $(document).ready(function() {
 	});
 	
 	$("#any_event_btn").click(function() {
-		var container = $('#calendarGrid'), scrollTo = $('.currentHour');
-		var moveTo = scrollTo.offset().top - container.offset().top + container.scrollTop() - ((container.height()-scrollTo.height())/2);
-		container.scrollTop(moveTo);
+		//testing purposes
 	});
 	
 	$(".cell__").click(function() {
@@ -84,10 +82,19 @@ function dynamicCss() {
 	item.css('line-height', item.css('height'));
 	
 	//set width of headers based on the main calendar grid
-	//each browser has different scroller size, so we need to compute the width
-	//dynamically
-	//TODO: Firefox needs the '-1' but chrome does not
-	$('.headerRow').css('width', ($('#calendarGrid')[0].scrollWidth-1) + 'px');
+	//each browser has different scroller size: we need to compute the width dynamically
+	item = $('#calendarGrid');
+	var realWidth = item[0].scrollWidth;
+	var totalWidth = item.width();
+	var padding = (totalWidth-realWidth) + 'px';
+	$('.headerRow').css('padding-right', padding);
+	//$('.headerRow').css('width', $('#calendarGrid')[0].scrollWidth + 'px');
+	
+	//scroll to current hour
+	var container = $('#calendarGrid'), scrollTo = $('.currentHour');
+	var moveTo = scrollTo.offset().top - container.offset().top + container.scrollTop() - ((container.height()-scrollTo.height())/2);
+	container.scrollTop(moveTo);
+	
 }
 
 function drawCurrentHour() {

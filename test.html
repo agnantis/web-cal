@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
 	<meta charset="utf-8">
-	<title>droppable demo</title>
+	<title>Google calendar demo</title>
 	<link rel="stylesheet" href="_css/site.css">
 	<style>
 	</style>
@@ -12,22 +12,27 @@
 </head>
 <body>
 	<div id="draggable_container"></div>
-	<div id="droppable">
+	<div id="theCalendar">
+		<div id="calViewport">
 		<div id="calendarHeader">
 			<div class="headerRow">
 				<div class="headerCell headerNoCell"></div>
-				<div class="headerCell headerFirstCell"><div class="headerHalfCell1">Monday</div><div class="headerHalfCell2"></div></div>
-				<div class="headerCell currentDay"><div class="headerHalfCell1">Monday</div><div class="headerHalfCell2"></div></div>
-				<div class="headerCell"><div class="headerHalfCell1">Monday</div><div class="headerHalfCell2"></div></div>
-				<div class="headerCell"><div class="headerHalfCell1">Monday</div><div class="headerHalfCell2"></div></div>
-				<div class="headerCell"><div class="headerHalfCell1">Monday</div><div class="headerHalfCell2"></div></div>
+				<div class="headerCell headerFirstCell"><div class="headerHalfCell1">Mon 28/1</div><div class="headerHalfCell2"></div></div>
+				<div class="headerCell currentDay"><div class="headerHalfCell1">Tue 29/1</div><div class="headerHalfCell2"></div></div>
+				<div class="headerCell"><div class="headerHalfCell1">Wed 30/1</div><div class="headerHalfCell2"></div></div>
+				<div class="headerCell"><div class="headerHalfCell1">Thu 31/1</div><div class="headerHalfCell2"></div></div>
+				<div class="headerCell"><div class="headerHalfCell1">Fri 1/2</div><div class="headerHalfCell2"></div></div>
+				<div class="headerCell"><div class="headerHalfCell1">Sat 2/2</div><div class="headerHalfCell2"></div></div>
+				<div class="headerCell"><div class="headerHalfCell1">Sun 3/2</div><div class="headerHalfCell2"></div></div>
 			</div>
 		</div>
 		<div id="calendarGrid">
-			<div class="row firstRow">
+			<div id="theRow" class="row firstRow">
 				<div class="cell firstCell">12am</div>
 				<div class="cell"><div class="halfCell"></div></div>
 				<div class="cell currentDay"><div class="halfCell"></div></div>
+				<div class="cell"><div class="halfCell"></div></div>
+				<div class="cell"><div class="halfCell"></div></div>
 				<div class="cell"><div class="halfCell"></div></div>
 				<div class="cell"><div class="halfCell"></div></div>
 				<div class="cell"><div class="halfCell"></div></div>
@@ -39,11 +44,15 @@
 				<div class="cell"><div class="halfCell"></div></div>
 				<div class="cell"><div class="halfCell"></div></div>
 				<div class="cell"><div class="halfCell"></div></div>
+				<div class="cell"><div class="halfCell"></div></div>
+				<div class="cell"><div class="halfCell"></div></div>
 			</div>
 			<div class="row">
 				<div class="cell firstCell">2am</div>
 				<div class="cell"><div class="halfCell"></div></div>
 				<div class="cell currentDay"><div class="halfCell"></div></div>
+				<div class="cell"><div class="halfCell"></div></div>
+				<div class="cell"><div class="halfCell"></div></div>
 				<div class="cell"><div class="halfCell"></div></div>
 				<div class="cell"><div class="halfCell"></div></div>
 				<div class="cell"><div class="halfCell"></div></div>
@@ -55,11 +64,15 @@
 				<div class="cell"><div class="halfCell"></div></div>
 				<div class="cell"><div class="halfCell"></div></div>
 				<div class="cell"><div class="halfCell"></div></div>
+				<div class="cell"><div class="halfCell"></div></div>
+				<div class="cell"><div class="halfCell"></div></div>
 			</div>
 			<div class="row">
 				<div class="cell firstCell">4am</div>
 				<div class="cell"><div class="halfCell"></div></div>
 				<div class="cell currentDay"><div class="halfCell"></div></div>
+				<div class="cell"><div class="halfCell"></div></div>
+				<div class="cell"><div class="halfCell"></div></div>
 				<div class="cell"><div class="halfCell"></div></div>
 				<div class="cell"><div class="halfCell"></div></div>
 				<div class="cell"><div class="halfCell"></div></div>
@@ -71,11 +84,15 @@
 				<div class="cell"><div class="halfCell"></div></div>
 				<div class="cell"><div class="halfCell"></div></div>
 				<div class="cell"><div class="halfCell"></div></div>
+				<div class="cell"><div class="halfCell"></div></div>
+				<div class="cell"><div class="halfCell"></div></div>
 			</div>
 			<div class="row">
 				<div class="cell firstCell">6am</div>
 				<div class="cell"><div class="halfCell"></div></div>
 				<div class="cell currentDay"><div class="halfCell"></div></div>
+				<div class="cell"><div class="halfCell"></div></div>
+				<div class="cell"><div class="halfCell"></div></div>
 				<div class="cell"><div class="halfCell"></div></div>
 				<div class="cell"><div class="halfCell"></div></div>
 				<div class="cell"><div class="halfCell"></div></div>
@@ -87,11 +104,15 @@
 				<div class="cell"><div class="halfCell"></div></div>
 				<div class="cell"><div class="halfCell"></div></div>
 				<div class="cell"><div class="halfCell"></div></div>
+				<div class="cell"><div class="halfCell"></div></div>
+				<div class="cell"><div class="halfCell"></div></div>
 			</div>
 			<div class="row">
 				<div class="cell firstCell">8am</div>
 				<div class="cell"><div class="halfCell"></div></div>
 				<div class="cell currentDay"><div class="halfCell"></div></div>
+				<div class="cell"><div class="halfCell"></div></div>
+				<div class="cell"><div class="halfCell"></div></div>
 				<div class="cell"><div class="halfCell"></div></div>
 				<div class="cell"><div class="halfCell"></div></div>
 				<div class="cell"><div class="halfCell"></div></div>
@@ -103,11 +124,15 @@
 				<div class="cell"><div class="halfCell"></div></div>
 				<div class="cell"><div class="halfCell"></div></div>
 				<div class="cell"><div class="halfCell"></div></div>
+				<div class="cell"><div class="halfCell"></div></div>
+				<div class="cell"><div class="halfCell"></div></div>
 			</div>
 			<div class="row">
 				<div class="cell firstCell">10am</div>
 				<div class="cell"><div class="halfCell"></div></div>
 				<div class="cell currentDay"><div class="halfCell"></div></div>
+				<div class="cell"><div class="halfCell"></div></div>
+				<div class="cell"><div class="halfCell"></div></div>
 				<div class="cell"><div class="halfCell"></div></div>
 				<div class="cell"><div class="halfCell"></div></div>
 				<div class="cell"><div class="halfCell"></div></div>
@@ -119,11 +144,15 @@
 				<div class="cell"><div class="halfCell"></div></div>
 				<div class="cell"><div class="halfCell"></div></div>
 				<div class="cell"><div class="halfCell"></div></div>
+				<div class="cell"><div class="halfCell"></div></div>
+				<div class="cell"><div class="halfCell"></div></div>
 			</div>
 			<div class="row">
 				<div class="cell firstCell">12pm</div>
 				<div class="cell"><div class="halfCell"></div></div>
 				<div class="cell currentDay"><div class="halfCell"></div></div>
+				<div class="cell"><div class="halfCell"></div></div>
+				<div class="cell"><div class="halfCell"></div></div>
 				<div class="cell"><div class="halfCell"></div></div>
 				<div class="cell"><div class="halfCell"></div></div>
 				<div class="cell"><div class="halfCell"></div></div>
@@ -135,11 +164,15 @@
 				<div class="cell"><div class="halfCell"></div></div>
 				<div class="cell"><div class="halfCell"></div></div>
 				<div class="cell"><div class="halfCell"></div></div>
+				<div class="cell"><div class="halfCell"></div></div>
+				<div class="cell"><div class="halfCell"></div></div>
 			</div>
 			<div class="row">
 				<div class="cell firstCell">2pm</div>
 				<div class="cell"><div class="halfCell"></div></div>
 				<div class="cell currentDay"><div class="halfCell"></div></div>
+				<div class="cell"><div class="halfCell"></div></div>
+				<div class="cell"><div class="halfCell"></div></div>
 				<div class="cell"><div class="halfCell"></div></div>
 				<div class="cell"><div class="halfCell"></div></div>
 				<div class="cell"><div class="halfCell"></div></div>
@@ -151,11 +184,15 @@
 				<div class="cell"><div class="halfCell"></div></div>
 				<div class="cell"><div class="halfCell"></div></div>
 				<div class="cell"><div class="halfCell"></div></div>
+				<div class="cell"><div class="halfCell"></div></div>
+				<div class="cell"><div class="halfCell"></div></div>
 			</div>
 			<div class="row">
 				<div class="cell firstCell">4pm</div>
 				<div class="cell"><div class="halfCell"></div></div>
 				<div class="cell currentDay"><div class="halfCell"></div></div>
+				<div class="cell"><div class="halfCell"></div></div>
+				<div class="cell"><div class="halfCell"></div></div>
 				<div class="cell"><div class="halfCell"></div></div>
 				<div class="cell"><div class="halfCell"></div></div>
 				<div class="cell"><div class="halfCell"></div></div>
@@ -167,11 +204,15 @@
 				<div class="cell"><div class="halfCell"></div></div>
 				<div class="cell"><div class="halfCell"></div></div>
 				<div class="cell"><div class="halfCell"></div></div>
+				<div class="cell"><div class="halfCell"></div></div>
+				<div class="cell"><div class="halfCell"></div></div>
 			</div>
 			<div class="row">
 				<div class="cell firstCell">6pm</div>
 				<div class="cell"><div class="halfCell"></div></div>
 				<div class="cell currentDay"><div class="halfCell"></div></div>
+				<div class="cell"><div class="halfCell"></div></div>
+				<div class="cell"><div class="halfCell"></div></div>
 				<div class="cell"><div class="halfCell"></div></div>
 				<div class="cell"><div class="halfCell"></div></div>
 				<div class="cell"><div class="halfCell"></div></div>
@@ -183,11 +224,15 @@
 				<div class="cell"><div class="halfCell"></div></div>
 				<div class="cell"><div class="halfCell"></div></div>
 				<div class="cell"><div class="halfCell"></div></div>
+				<div class="cell"><div class="halfCell"></div></div>
+				<div class="cell"><div class="halfCell"></div></div>
 			</div>
 			<div class="row">
 				<div class="cell firstCell">8pm</div>
 				<div class="cell"><div class="halfCell"></div></div>
 				<div class="cell currentDay"><div class="halfCell"></div></div>
+				<div class="cell"><div class="halfCell"></div></div>
+				<div class="cell"><div class="halfCell"></div></div>
 				<div class="cell"><div class="halfCell"></div></div>
 				<div class="cell"><div class="halfCell"></div></div>
 				<div class="cell"><div class="halfCell"></div></div>
@@ -199,11 +244,15 @@
 				<div class="cell"><div class="halfCell"></div></div>
 				<div class="cell"><div class="halfCell"></div></div>
 				<div class="cell"><div class="halfCell"></div></div>
+				<div class="cell"><div class="halfCell"></div></div>
+				<div class="cell"><div class="halfCell"></div></div>
 			</div>
 			<div class="row">
 				<div class="cell firstCell">10pm</div>
 				<div class="cell"><div class="halfCell"></div></div>
 				<div class="cell currentDay"><div class="halfCell"></div></div>
+				<div class="cell"><div class="halfCell"></div></div>
+				<div class="cell"><div class="halfCell"></div></div>
 				<div class="cell"><div class="halfCell"></div></div>
 				<div class="cell"><div class="halfCell"></div></div>
 				<div class="cell"><div class="halfCell"></div></div>
@@ -215,10 +264,13 @@
 				<div class="cell"><div class="halfCell"></div></div>
 				<div class="cell"><div class="halfCell"></div></div>
 				<div class="cell"><div class="halfCell"></div></div>
+				<div class="cell"><div class="halfCell"></div></div>
+				<div class="cell"><div class="halfCell"></div></div>
 			</div>
 			
 		</div> <!-- calendarGrid -->
-	</div> <!-- droppable -->
+		</div> <!-- calViewport -->
+	</div> <!-- theCalendar -->
 	<div id="add_event_btn">Add</div>
 	<div id="any_event_btn">Push</div>
 </body>
