@@ -56,7 +56,7 @@ $(document).ready(function() {
 			
 	});
 	
-	$(".cell").click(function() {
+	$(".cell__").click(function() {
 			var userInput = "Event " + (++count);
 			$("<div class=\"draggable\">" + userInput + "</div>")
 			.resizable()
