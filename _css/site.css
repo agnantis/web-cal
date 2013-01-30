@@ -54,14 +54,22 @@ body {
 	padding: 10px 20px;
 	border: 1px dotted rgb(252,101,18);
 	border-top: 20px solid rgb(252,101,18);
-	border-radius: 10px;
+	/*border-radius: 10px;*/
 	box-shadow: 0 0 10px rgba(0,0,0,.5);
 	background-color: #fff;
 }
 
+#calendarHeader {
+	height: 5%;
+	width: 100%;
+	margin-bottom: 5px;
+	margin-top: 10px;
+	/*border: 1px solid rgba(170, 170, 170, 0.7);*/
+}
+
 #calendarGrid {
 	width: 100%;
-	height: 100%;
+	height: 90%;
 	overflow: auto;
 	border-top: 1px solid rgba(170, 170, 170, 0.7);
 	border-bottom: 1px solid rgba(170, 170, 170, 0.7);
@@ -109,11 +117,24 @@ body {
 	border-bottom: 1px solid rgba(170, 170, 170, 0.7);
 }
 
+.headerRow {
+	float:left;
+	clear: both;
+	width: 100%;
+	height: 100%; 
+}
+
 .cell {
 	width: 19%;
 	height: 100%;
 	float: left;
 	border-right: 1px solid rgba(170, 170, 170, 0.7);
+}
+
+.headerCell {
+	width: 19%;
+	height: 100%;
+	float: left;
 }
 
 .firstRow {
@@ -130,14 +151,49 @@ body {
 	padding-top: 5px;
 }
 
+.headerNoCell {
+	width: 5%;
+}
+
 .halfCell {
 	border-bottom: 1px dotted rgba(170, 170, 170, 0.7);
 	width: 100%;
 	height: 50%;
 }
 
+.headerHalfCell1 {
+	/*width: 100%;*/
+	height: 70%;
+	font-size: 75%;
+	color: rgba(80, 80, 80, 1);
+	text-align: center;
+	/*line-height: 30px; JS configured*/ 
+	vertical-align: middle;
+	margin-left: -1px;
+}
+
+.headerHalfCell2 {
+	border: 1px solid rgba(170, 170, 170, 0.7);
+	border-left: none;
+	width: 100%;
+	height: 28%;
+}
+
+.headerFirstCell .headerHalfCell1 {
+	margin-left: 0; 
+}
+
+.headerFirstCell .headerHalfCell2 {
+	border-left: 1px solid rgba(170, 170, 170, 0.7);
+}
+
 .currentDay {
-	background-color: rgba(170, 170, 170, 0.2)
+	background-color: rgba(170, 170, 170, 0.2);
+}
+
+.currentDay .headerHalfCell1 {
+	border: 1px solid rgba(170, 170, 170, 0.7);
+	border-bottom: none;
 }
 
 /* current time */

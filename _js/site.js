@@ -71,10 +71,24 @@ $(document).ready(function() {
 			alert($(this).uniqueId());
 	});	
 	
-	drawCurrentHour()
+	drawCurrentHour();
 	window.setInterval(drawCurrentHour, 5*60*1000); //every 5 minutes
 	
+	dynamicCss();
+	
 }); // end ready
+
+function dynamicCss() {
+	//align vertical the days of the calendar, based on cell height
+	var item = $('.headerHalfCell1');
+	item.css('line-height', item.css('height'));
+	
+	//set width of headers based on the main calendar grid
+	//each browser has different scroller size, so we need to compute the width
+	//dynamically
+	//TODO: Firefox needs the '-1' but chrome does not
+	$('.headerRow').css('width', ($('#calendarGrid')[0].scrollWidth-1) + 'px');
+}
 
 function drawCurrentHour() {
 	var hour = new Date();
