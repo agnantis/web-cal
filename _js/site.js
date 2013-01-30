@@ -98,10 +98,17 @@ function dynamicCss() {
 
 function drawCurrentDay() {
 	var date = new Date();
+	//day
+	var day = date.getDay();
+	$('#theCalendar .currentDay').removeClass('currentDay');
+	$('.headerRow').children('.headerCell').eq(day+1).addClass('currentDay');
+	$('#calendarGrid .row').each(function() {
+		$(this).children('.cell').eq(day+1).addClass('currentDay');
+	});
+
 	//hour
 	var hour = date.getHours();
-	console.log();
-	$('#calendarGrid .row').removeClass('currentHour');
+	$('#calendarGrid .currentHour').removeClass('currentHour');
 	$('#calendarGrid').children('.row').eq(hour).addClass('currentHour');
 
 	//min
