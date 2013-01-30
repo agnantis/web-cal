@@ -56,6 +56,12 @@ $(document).ready(function() {
 			
 	});
 	
+	$("#any_event_btn").click(function() {
+		var container = $('#calendarGrid'), scrollTo = $('.currentHour');
+		var moveTo = scrollTo.offset().top - container.offset().top + container.scrollTop() - ((container.height()-scrollTo.height())/2);
+		container.scrollTop(moveTo);
+	});
+	
 	$(".cell__").click(function() {
 			var userInput = "Event " + (++count);
 			$("<div class=\"draggable\">" + userInput + "</div>")
@@ -63,10 +69,24 @@ $(document).ready(function() {
 			.draggable({snap: ".cell"})
 			.appendTo($(this)).css("width", $(".cell").css('width'));
 			alert($(this).uniqueId());
-	});
+	});	
 	
+	drawCurrentHour()
+	window.setInterval(drawCurrentHour, 5*60*1000); //every 5 minutes
 	
 }); // end ready
+
+function drawCurrentHour() {
+	var hour = new Date();
+	var min = 100*(new Date().getMinutes()/60);
+	var current = $('.currentHour .currentDay')
+	current.css('background-position', 'left  '+ min + "%");
+	
+	//TODO: percentage is not so acurate. 
+	//especially for extreme values (0-10, 80-100)
+	var curRow = $('.currentHour .firstCell');
+	curRow.css('background-position', 'left  '+ min + "%");
+}
 
 function addChild(cell, event) {
 	var ch = cell.data("_children");
