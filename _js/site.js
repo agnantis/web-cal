@@ -69,10 +69,11 @@ $(document).ready(function() {
 			alert($(this).uniqueId());
 	});	
 	
-	drawCurrentHour();
-	window.setInterval(drawCurrentHour, 5*60*1000); //every 5 minutes
-	
 	dynamicCss();
+
+	drawCurrentDay();
+	window.setInterval(drawCurrentDay, 5*60*1000); //every 5 minutes
+	
 	
 }); // end ready
 
@@ -88,25 +89,32 @@ function dynamicCss() {
 	var totalWidth = item.width();
 	var padding = (totalWidth-realWidth) + 'px';
 	$('.headerRow').css('padding-right', padding);
-	//$('.headerRow').css('width', $('#calendarGrid')[0].scrollWidth + 'px');
 	
 	//scroll to current hour
 	var container = $('#calendarGrid'), scrollTo = $('.currentHour');
 	var moveTo = scrollTo.offset().top - container.offset().top + container.scrollTop() - ((container.height()-scrollTo.height())/2);
-	container.scrollTop(moveTo);
-	
+	container.scrollTop(moveTo);	
 }
 
-function drawCurrentHour() {
-	var hour = new Date();
-	var min = 100*(new Date().getMinutes()/60);
+function drawCurrentDay() {
+	var date = new Date();
+	//hour
+	var hour = date.getHours();
+	console.log();
+	$('#calendarGrid .row').removeClass('currentHour');
+	$('#calendarGrid').children('.row').eq(hour).addClass('currentHour');
+
+	//min
+	var mins = 100*(date.getMinutes()/60);
 	var current = $('.currentHour .currentDay')
-	current.css('background-position', 'left  '+ min + "%");
+	current.css('background-position', 'left  '+ mins + "%");
 	
-	//TODO: percentage is not so acurate. 
+	//TODO: percentage is not so accurate. 
 	//especially for extreme values (0-10, 80-100)
 	var curRow = $('.currentHour .firstCell');
-	curRow.css('background-position', 'left  '+ min + "%");
+	curRow.css('background-position', 'left  '+ mins + "%");
+	
+	
 }
 
 function addChild(cell, event) {
