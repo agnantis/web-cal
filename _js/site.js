@@ -1,19 +1,20 @@
 $(document).ready(function() {
+	var count = 0;
 	
 	$("#resizable").resizable();
 	$(".draggable").draggable();
 	$(".cell").data("_children", []);
 	$(".cell").droppable({
 			over: function(event, ui) {
-				$(this).css("background-color", "#FDD471")
-					.css("box-shadow", "inset 0 0 5px 2px #5488EB");
+				$(this).css("background-color", "#FDD471");
+					//.css("box-shadow", "inset 0 0 5px 2px #5488EB");
 			}
 	});
 	$(".cell").droppable({
 			out: function(event, ui) {
-				$(this).css("background-color",  "rgb(250,235,199)")
-					.css("box-shadow", "none");
-				$(ui.draggable).resizable( "destroy" );
+				$(this).css("background-color",  "rgb(250,235,199)");
+					//.css("box-shadow", "none");
+				$(ui.draggable).resizable("destroy");
 			}
 	});
 	
@@ -21,7 +22,6 @@ $(document).ready(function() {
 			drop: function(event, ui) {
 				$(ui.draggable).resizable();
 				addChild($(this), $(ui.draggable));
-				alert("Post: " + $(this).data("_children").length);
 			}
 	});
 	
@@ -41,25 +41,34 @@ $(document).ready(function() {
 	//so I need to use mousedown, mouseup events, instead.
 	$("#add_event_btn").click(function() {
 			//request the name of the event
-			var userInput = prompt("Event Name", "");
+			//var userInput = prompt("Event Name", "");
+			var userInput = "Event " + (++count);
 			$("<div class=\"draggable\">" + userInput + "</div>")
 			//.resizable({ disabled: true })
-			.draggable() //{snap: ".cell"})
-			.bind('mousedown', function() {
+			.draggable({snap: ".cell"})
+			/*.bind('mousedown', function() {
       	$(this).css('box-shadow', 'none');
   		})
   		.bind('mouseup', function() {
       	$(this).css('box-shadow', '0px 0px 5px 2px rgba(101,101,101,.7)');
-  		})
-			.appendTo("#draggable_container");
+  		})*/
+			.appendTo("#draggable_container").css("width", $(".cell").css('width'));
 			
+	});
+	
+	$(".cell").click(function() {
+			var userInput = "Event " + (++count);
+			$("<div class=\"draggable\">" + userInput + "</div>")
+			.resizable()
+			.draggable({snap: ".cell"})
+			.appendTo($(this)).css("width", $(".cell").css('width'));
+			alert($(this).uniqueId());
 	});
 	
 	
 }); // end ready
 
 function addChild(cell, event) {
-	alert("Start: " + cell.data("_children").length);
 	var ch = cell.data("_children");
 	//alert($.inArray(event, ch));
 	if ($.inArray(event, ch) > -1)	 {
@@ -81,7 +90,6 @@ function addChild(cell, event) {
 	}
 	
 	cell.data("_children", ch);
-	alert("End: " + cell.data("_children").length);
 }
 
 function testArray() {
