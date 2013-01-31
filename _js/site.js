@@ -2,7 +2,11 @@ $(document).ready(function() {
 	var count = 0;
 	
 	$("#resizable").resizable();
-	$(".draggable").draggable();
+	//$(".draggable").draggable();
+	//{
+	//	drag: function(event, ui) {
+	//		}
+	//});
 	$(".cell").data("_children", []);
 	$(".cell").droppable({
 			_over: function(event, ui) {
@@ -66,45 +70,22 @@ $(document).ready(function() {
 		var cellWidth = $(this).outerWidth();
 		
 		var userInput = "Event " + (++count);
-		$("<div class='event'><span class='text'>" + userInput + "</span></div>")
+		var eventElem = $("<div class='event'><span class='text'>" + userInput + "</span></div>")
 		.resizable({
 			grid: cellHeight,
 			maxWidth: cellWidth-6,
 			minWidth: cellWidth-6,
 			minHeight: cellHeight-8,
 			resize: function(event, ui) {
-				var xpos = ui.position.left + $(ui.element).width()/2;
-				var ypos = ui.position.top + $(ui.element).height();
-				var theCell = $.nearest({x: xpos, y: ypos}, '.halfCell');
-				var newYpos = theCell.position().top + theCell.height() - 8;				
-				$(ui.element).height(newYpos - ui.position.top);
-				
-				var startTime = parseInt($(ui.element).parent().parent().siblings(':first').children('.hour').text());
-				var endTime = parseInt(theCell.parent().siblings(':first').children('.hour').text());
-				if ($(ui.element).parent().hasClass('up')) {
-					startTime += ":00";
-				} else {
-					startTime += ":30";
-				}
-				console.log("From: " + startTime);
-				
-				//upside-down because a filled up cell -> :30 + 1hour
-				if (theCell.hasClass('up')) {
-					endTime += ":30";
-				} else {
-					//plus an hour
-					endTime += 1;
-					endTime += ":00";
-				}
-				console.log("Το: " + endTime);
-				$(ui.element).children(".text").html(startTime + " - " + endTime);
-				//console.log("To: " + theCell.parent().siblings(':first').children('.hour').text());
+				setEventTimeLabel($(ui.element), true);
 			}
 		})
 		.draggable({snap: ".halfCell"})
 		.appendTo($(this))
 		.width(cellWidth-6)
-		.height(cellHeight*2-8);
+		.height(cellHeight*2-8)
+		.draggable({containment: "#calendarGrid", grid: [cellWidth-2, cellHeight-2] });	
+		setEventTimeLabel(eventElem, false);
 	});	
 	
 	dynamicCss();
@@ -114,6 +95,48 @@ $(document).ready(function() {
 	
 	
 }); // end ready
+
+/* eventElement: the new event div
+ * updateHeight: if true update element height
+ * it computes the starting and ending time of the event
+ * and depicts it on the eventElement
+ */
+function setEventTimeLabel(eventElement, updateHeight) {
+	var xpos = eventElement.position().left + eventElement.width()/2;
+	var ypos = eventElement.position().top + eventElement.height();
+	var theCell = $.nearest({x: xpos, y: ypos}, '.halfCell');
+	var newYpos = theCell.position().top + theCell.height() - 8;		
+	if (updateHeight) {
+		eventElement.height(newYpos - eventElement.position().top);
+	}
+	
+	updateEventTimeLabel(eventElement, theCell);
+}
+
+/* eventElement: the new event div
+ * destParent: the element that is under the eventElement end
+ * it computes the starting and ending time of the event
+ * and prints it
+ */
+function updateEventTimeLabel(eventElement, destParent) {
+	var startTime = parseInt(eventElement.parent().parent().siblings(':first').children('.hour').text());
+	var endTime = parseInt(destParent.parent().siblings(':first').children('.hour').text());
+	if (eventElement.parent().hasClass('up')) {
+		startTime += ":00";
+	} else {
+		startTime += ":30";
+	}
+
+	if (destParent.hasClass('up')) { 
+		endTime += ":30";
+	} else {
+		//plus an hour
+		endTime += 1;
+		endTime += ":00";
+	}
+	//set time h:mm - h:mm
+	eventElement.children(".text").html(startTime + " - " + endTime);
+}
 
 function dynamicCss() {
 	//align vertical the days of the calendar, based on cell height
