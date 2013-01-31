@@ -1,64 +1,27 @@
 $(document).ready(function() {
 	var count = 0;
 	
-	$("#resizable").resizable();
-	//$(".draggable").draggable();
-	//{
-	//	drag: function(event, ui) {
-	//		}
-	//});
 	$(".cell").data("_children", []);
-	$(".cell").droppable({
-			_over: function(event, ui) {
-				//$(this).css("background-color", "#FDD471");
-				alert("test");
-				$(ui.draggable).css("background-color", "#3a1232");
-			}
-	});
-	$(".cell").droppable({
-			_out: function(event, ui) {
-				$(this).css("background-color",  "rgb(250,235,199)");
-					//.css("box-shadow", "none");
-				$(ui.draggable).resizable("destroy");
-			}
-	});
 	
-	$(".cell").droppable({
+	$(".halfCell").droppable({
 			_drop: function(event, ui) {
 				$(ui.draggable).resizable();
 				addChild($(this), $(ui.draggable));
-			}
+			},
+			drop: function(ev, ui) {
+				//var xpos = $(ui.draggable).position().left+10;
+				//var ypos = $(ui.draggable).position().top+10;
+				//var theCell = $.nearest({x: xpos, y: ypos}, '.halfCell');
+				//theCell.css('background-color', "#123");
+        //var dropped = ui.draggable;
+        //var droppedOn = $(this);
+        //$(dropped).detach().css({top: 0,left: 0}).appendTo(droppedOn);
+      }
 	});
 	
-	$(".cell").droppable({	
-			_activate: function(event, ui) {
-				//nothing wet
-			}
-	});
 	
-	$(".cell").droppable({	
-			_deactivate: function(event, ui) {
-				//nothing yet
-			}
-	});
-	
-	//currently there is a bug with draggable and :active pseudo-class in firefox
-	//so I need to use mousedown, mouseup events, instead.
 	$("#add_event_btn").click(function() {
-			//request the name of the event
-			//var userInput = prompt("Event Name", "");
-			var userInput = "Event " + (++count);
-			$("<div class=\"draggable\">" + userInput + "</div>")
-			//.resizable({ disabled: true })
-			.draggable({snap: ".cell"})
-			/*.bind('mousedown', function() {
-      	$(this).css('box-shadow', 'none');
-  		})
-  		.bind('mouseup', function() {
-      	$(this).css('box-shadow', '0px 0px 5px 2px rgba(101,101,101,.7)');
-  		})*/
-			.appendTo("#draggable_container").css("width", $(".cell").css('width'));
-			
+		//testing purposes			
 	});
 	
 	$("#any_event_btn").click(function() {
@@ -72,6 +35,7 @@ $(document).ready(function() {
 		var userInput = "Event " + (++count);
 		var eventElem = $("<div class='event'><span class='text'>" + userInput + "</span></div>")
 		.resizable({
+			handles: "s",
 			grid: cellHeight,
 			maxWidth: cellWidth-6,
 			minWidth: cellWidth-6,
@@ -80,11 +44,33 @@ $(document).ready(function() {
 				setEventTimeLabel($(ui.element), true);
 			}
 		})
-		.draggable({snap: ".halfCell"})
+		//.draggable({snap: ".halfCell"})
 		.appendTo($(this))
 		.width(cellWidth-6)
 		.height(cellHeight*2-8)
-		.draggable({containment: "#calendarGrid", grid: [cellWidth-2, cellHeight-2] });	
+		.draggable({
+			snap: ".halfCell",
+			containment: "#calendarGrid", 
+			grid: [cellWidth-1, cellHeight-1],
+			drag: function(event, ui) {
+				var xpos = $(ui.helper).position().left+10;
+				var ypos = $(ui.helper).position().top+10;
+				var theCell = $.nearest({x: xpos, y: ypos}, '.halfCell');
+        $(ui.helper).detach().appendTo(theCell);
+				setEventTimeLabel($(ui.helper), false);
+			},
+			stop: function(event, ui) {
+				var ev = $(ui.helper);
+				ev.css("top", ev.parent().css("top"));
+				ev.css("left", ev.parent().css("left"));
+				//var xpos = $(ui.helper).position().left+10;
+				//var ypos = $(ui.helper).position().top+10;
+				//var theCell = $.nearest({x: xpos, y: ypos}, '.halfCell');
+        //$(ui.helper).detach().appendTo(theCell);
+				//// updateEventTimeLabel($(ui.helper), theCell);
+        //setEventTimeLabel($(ui.helper), false);
+			},
+		});	
 		setEventTimeLabel(eventElem, false);
 	});	
 	

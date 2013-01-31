@@ -49,10 +49,13 @@ body {
 	text-transform: uppercase;
 	color: #444;
 	background-color: rgba(255, 116, 116, 0.85);
-	border: 1px solid rgba(255, 116, 116, 1);
+	border: 1px solid rgba(255, 80, 80, 1);
 	float: left;
 	cursor: pointer;
 	overflow: hidden;
+}
+
+.event:hover {
 }
 
 
@@ -245,18 +248,3 @@ body {
 	text-align: center; 
 	margin: 0; 
 }
-
-/* resizable jquery-ui css replacement */
-.ui-icon { width: 16px; height: 16px; background-image: url('../_images/ui-icons.png') };
-.ui-resizable { position: relative;}
-.ui-resizable-handle { position: absolute;font-size: 0.1px;z-index: 99999; display: block;}
-.ui-resizable-disabled .ui-resizable-handle, .ui-resizable-autohide .ui-resizable-handle { display: none; }
-.ui-resizable-n1 { cursor: n-resize; height: 7px; width: 100%; top: -5px; left: 0px; }
-.ui-resizable-s { cursor: s-resize; height: 7px; width: 100%; bottom: -5px; left: 0px; }
-.ui-resizable-e1 { cursor: e-resize; width: 7px; right: -5px; top: 0px; height: 100%; }
-.ui-resizable-w1 { cursor: w-resize; width: 7px; left: -5px; top: 0px; height: 100%; }
-.ui-resizable-se1 { cursor: se-resize; width: 12px; height: 12px; right: 1px; bottom: 1px; }
-.ui-resizable-sw1 { cursor: sw-resize; width: 9px; height: 9px; left: -5px; bottom: -5px; }
-.ui-resizable-nw1 { cursor: nw-resize; width: 9px; height: 9px; left: -5px; top: -5px; }
-.ui-resizable-ne1 { cursor: ne-resize; width: 9px; height: 9px; right: -5px; top: -5px;}
-.ui-icon-gripsmall-diagonal-se1 { background-position: -64px -224px; }
