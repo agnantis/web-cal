@@ -43,7 +43,7 @@ body {
 
 .event {
 	text-align: left;	
-	padding: 1px;
+	/*padding: 1px;*/
 	font-size: 60%;
 	font-weight: bold;
 	text-transform: uppercase;
@@ -53,9 +53,20 @@ body {
 	float: left;
 	cursor: pointer;
 	overflow: hidden;
+	position: relative;
 }
 
-.event:hover {
+.event .text {
+	padding: 1px;
+}
+
+.event .handle {
+	position: absolute;
+	bottom: 0;
+	text-align: center;
+	width: 100%;
+	height: 10px;
+	display: none;
 }
 
 

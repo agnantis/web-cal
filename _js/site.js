@@ -33,7 +33,7 @@ $(document).ready(function() {
 		var cellWidth = $(this).outerWidth();
 		
 		var userInput = "Event " + (++count);
-		var eventElem = $("<div class='event'><span class='text'>" + userInput + "</span></div>")
+		var eventElem = $("<div class='event'><div class='text'>" + userInput + "</div><div class='handle'>=</div></div>")
 		.resizable({
 			handles: "s",
 			grid: cellHeight,
@@ -63,14 +63,18 @@ $(document).ready(function() {
 				var ev = $(ui.helper);
 				ev.css("top", ev.parent().css("top"));
 				ev.css("left", ev.parent().css("left"));
-				//var xpos = $(ui.helper).position().left+10;
-				//var ypos = $(ui.helper).position().top+10;
-				//var theCell = $.nearest({x: xpos, y: ypos}, '.halfCell');
-        //$(ui.helper).detach().appendTo(theCell);
-				//// updateEventTimeLabel($(ui.helper), theCell);
-        //setEventTimeLabel($(ui.helper), false);
 			},
-		});	
+		})
+		.hover(
+			function() {
+				$(this).children('.handle').show();
+			},
+			function() {
+				$(this).children('.handle').hide();
+			}
+			
+		);	
+		
 		setEventTimeLabel(eventElem, false);
 	});	
 	
