@@ -8,6 +8,7 @@
 	</style>
 	<script src="_js/jquery-1.9.0.js"></script>
 	<script src="_js/jquery-ui.js"></script>
+	<script src="_js/jquery.nearest.min.js"></script>
 	<script src="_js/site.js"></script>
 </head>
 <body>
@@ -28,244 +29,244 @@
 		</div>
 		<div id="calendarGrid">
 			<div id="theRow" class="row firstRow">
-				<div class="cell firstCell">12am</div>
-				<div class="cell"><div class="halfCell"></div></div>
-				<div class="cell currentDay"><div class="halfCell"></div></div>
-				<div class="cell"><div class="halfCell"></div></div>
-				<div class="cell"><div class="halfCell"></div></div>
-				<div class="cell"><div class="halfCell"></div></div>
-				<div class="cell"><div class="halfCell"></div></div>
-				<div class="cell"><div class="halfCell"></div></div>
+				<div class="cell firstCell"><span class="hour">12</span><span class="midday">am</span></div>
+				<div class="cell"><div class="halfCell up"></div><div class="halfCell down"></div></div>
+				<div class="cell currentDay"><div class="halfCell up"></div><div class="halfCell down"></div></div>
+				<div class="cell"><div class="halfCell up"></div><div class="halfCell down"></div></div>
+				<div class="cell"><div class="halfCell up"></div><div class="halfCell down"></div></div>
+				<div class="cell"><div class="halfCell up"></div><div class="halfCell down"></div></div>
+				<div class="cell"><div class="halfCell up"></div><div class="halfCell down"></div></div>
+				<div class="cell"><div class="halfCell up"></div><div class="halfCell down"></div></div>
 			</div>
 			<div class="row">
-				<div class="cell firstCell">1am</div>
-				<div class="cell"><div class="halfCell"></div></div>
-				<div class="cell currentDay"><div class="halfCell"></div></div>
-				<div class="cell"><div class="halfCell"></div></div>
-				<div class="cell"><div class="halfCell"></div></div>
-				<div class="cell"><div class="halfCell"></div></div>
-				<div class="cell"><div class="halfCell"></div></div>
-				<div class="cell"><div class="halfCell"></div></div>
+				<div class="cell firstCell"><span class="hour">1</span><span class="midday">am</span></div>
+				<div class="cell"><div class="halfCell up"></div><div class="halfCell down"></div></div>
+				<div class="cell currentDay"><div class="halfCell up"></div><div class="halfCell down"></div></div>
+				<div class="cell"><div class="halfCell up"></div><div class="halfCell down"></div></div>
+				<div class="cell"><div class="halfCell up"></div><div class="halfCell down"></div></div>
+				<div class="cell"><div class="halfCell up"></div><div class="halfCell down"></div></div>
+				<div class="cell"><div class="halfCell up"></div><div class="halfCell down"></div></div>
+				<div class="cell"><div class="halfCell up"></div><div class="halfCell down"></div></div>
 			</div>
 			<div class="row">
-				<div class="cell firstCell">2am</div>
-				<div class="cell"><div class="halfCell"></div></div>
-				<div class="cell currentDay"><div class="halfCell"></div></div>
-				<div class="cell"><div class="halfCell"></div></div>
-				<div class="cell"><div class="halfCell"></div></div>
-				<div class="cell"><div class="halfCell"></div></div>
-				<div class="cell"><div class="halfCell"></div></div>
-				<div class="cell"><div class="halfCell"></div></div>
+				<div class="cell firstCell"><span class="hour">2</span><span class="midday">am</span></div>
+				<div class="cell"><div class="halfCell up"></div><div class="halfCell down"></div></div>
+				<div class="cell currentDay"><div class="halfCell up"></div><div class="halfCell down"></div></div>
+				<div class="cell"><div class="halfCell up"></div><div class="halfCell down"></div></div>
+				<div class="cell"><div class="halfCell up"></div><div class="halfCell down"></div></div>
+				<div class="cell"><div class="halfCell up"></div><div class="halfCell down"></div></div>
+				<div class="cell"><div class="halfCell up"></div><div class="halfCell down"></div></div>
+				<div class="cell"><div class="halfCell up"></div><div class="halfCell down"></div></div>
 			</div>
 			<div class="row">
-				<div class="cell firstCell">3am</div>
-				<div class="cell"><div class="halfCell"></div></div>
-				<div class="cell currentDay"><div class="halfCell"></div></div>
-				<div class="cell"><div class="halfCell"></div></div>
-				<div class="cell"><div class="halfCell"></div></div>
-				<div class="cell"><div class="halfCell"></div></div>
-				<div class="cell"><div class="halfCell"></div></div>
-				<div class="cell"><div class="halfCell"></div></div>
+				<div class="cell firstCell"><span class="hour">3</span><span class="midday">am</span></div>
+				<div class="cell"><div class="halfCell up"></div><div class="halfCell down"></div></div>
+				<div class="cell currentDay"><div class="halfCell up"></div><div class="halfCell down"></div></div>
+				<div class="cell"><div class="halfCell up"></div><div class="halfCell down"></div></div>
+				<div class="cell"><div class="halfCell up"></div><div class="halfCell down"></div></div>
+				<div class="cell"><div class="halfCell up"></div><div class="halfCell down"></div></div>
+				<div class="cell"><div class="halfCell up"></div><div class="halfCell down"></div></div>
+				<div class="cell"><div class="halfCell up"></div><div class="halfCell down"></div></div>
 			</div>
 			<div class="row">
-				<div class="cell firstCell">4am</div>
-				<div class="cell"><div class="halfCell"></div></div>
-				<div class="cell currentDay"><div class="halfCell"></div></div>
-				<div class="cell"><div class="halfCell"></div></div>
-				<div class="cell"><div class="halfCell"></div></div>
-				<div class="cell"><div class="halfCell"></div></div>
-				<div class="cell"><div class="halfCell"></div></div>
-				<div class="cell"><div class="halfCell"></div></div>
+				<div class="cell firstCell"><span class="hour">4</span><span class="midday">am</span></div>
+				<div class="cell"><div class="halfCell up"></div><div class="halfCell down"></div></div>
+				<div class="cell currentDay"><div class="halfCell up"></div><div class="halfCell down"></div></div>
+				<div class="cell"><div class="halfCell up"></div><div class="halfCell down"></div></div>
+				<div class="cell"><div class="halfCell up"></div><div class="halfCell down"></div></div>
+				<div class="cell"><div class="halfCell up"></div><div class="halfCell down"></div></div>
+				<div class="cell"><div class="halfCell up"></div><div class="halfCell down"></div></div>
+				<div class="cell"><div class="halfCell up"></div><div class="halfCell down"></div></div>
 			</div>
 			<div class="row">
-				<div class="cell firstCell">5am</div>
-				<div class="cell"><div class="halfCell"></div></div>
-				<div class="cell currentDay"><div class="halfCell"></div></div>
-				<div class="cell"><div class="halfCell"></div></div>
-				<div class="cell"><div class="halfCell"></div></div>
-				<div class="cell"><div class="halfCell"></div></div>
-				<div class="cell"><div class="halfCell"></div></div>
-				<div class="cell"><div class="halfCell"></div></div>
+				<div class="cell firstCell"><span class="hour">5</span><span class="midday">am</span></div>
+				<div class="cell"><div class="halfCell up"></div><div class="halfCell down"></div></div>
+				<div class="cell currentDay"><div class="halfCell up"></div><div class="halfCell down"></div></div>
+				<div class="cell"><div class="halfCell up"></div><div class="halfCell down"></div></div>
+				<div class="cell"><div class="halfCell up"></div><div class="halfCell down"></div></div>
+				<div class="cell"><div class="halfCell up"></div><div class="halfCell down"></div></div>
+				<div class="cell"><div class="halfCell up"></div><div class="halfCell down"></div></div>
+				<div class="cell"><div class="halfCell up"></div><div class="halfCell down"></div></div>
 			</div>
 			<div class="row">
-				<div class="cell firstCell">6am</div>
-				<div class="cell"><div class="halfCell"></div></div>
-				<div class="cell currentDay"><div class="halfCell"></div></div>
-				<div class="cell"><div class="halfCell"></div></div>
-				<div class="cell"><div class="halfCell"></div></div>
-				<div class="cell"><div class="halfCell"></div></div>
-				<div class="cell"><div class="halfCell"></div></div>
-				<div class="cell"><div class="halfCell"></div></div>
+				<div class="cell firstCell"><span class="hour">6</span><span class="midday">am</span></div>
+				<div class="cell"><div class="halfCell up"></div><div class="halfCell down"></div></div>
+				<div class="cell currentDay"><div class="halfCell up"></div><div class="halfCell down"></div></div>
+				<div class="cell"><div class="halfCell up"></div><div class="halfCell down"></div></div>
+				<div class="cell"><div class="halfCell up"></div><div class="halfCell down"></div></div>
+				<div class="cell"><div class="halfCell up"></div><div class="halfCell down"></div></div>
+				<div class="cell"><div class="halfCell up"></div><div class="halfCell down"></div></div>
+				<div class="cell"><div class="halfCell up"></div><div class="halfCell down"></div></div>
 			</div>
 			<div class="row">
-				<div class="cell firstCell">7am</div>
-				<div class="cell"><div class="halfCell"></div></div>
-				<div class="cell currentDay"><div class="halfCell"></div></div>
-				<div class="cell"><div class="halfCell"></div></div>
-				<div class="cell"><div class="halfCell"></div></div>
-				<div class="cell"><div class="halfCell"></div></div>
-				<div class="cell"><div class="halfCell"></div></div>
-				<div class="cell"><div class="halfCell"></div></div>
+				<div class="cell firstCell"><span class="hour">7</span><span class="midday">am</span></div>
+				<div class="cell"><div class="halfCell up"></div><div class="halfCell down"></div></div>
+				<div class="cell currentDay"><div class="halfCell up"></div><div class="halfCell down"></div></div>
+				<div class="cell"><div class="halfCell up"></div><div class="halfCell down"></div></div>
+				<div class="cell"><div class="halfCell up"></div><div class="halfCell down"></div></div>
+				<div class="cell"><div class="halfCell up"></div><div class="halfCell down"></div></div>
+				<div class="cell"><div class="halfCell up"></div><div class="halfCell down"></div></div>
+				<div class="cell"><div class="halfCell up"></div><div class="halfCell down"></div></div>
 			</div>
 			<div class="row">
-				<div class="cell firstCell">8am</div>
-				<div class="cell"><div class="halfCell"></div></div>
-				<div class="cell currentDay"><div class="halfCell"></div></div>
-				<div class="cell"><div class="halfCell"></div></div>
-				<div class="cell"><div class="halfCell"></div></div>
-				<div class="cell"><div class="halfCell"></div></div>
-				<div class="cell"><div class="halfCell"></div></div>
-				<div class="cell"><div class="halfCell"></div></div>
+				<div class="cell firstCell"><span class="hour">8</span><span class="midday">am</span></div>
+				<div class="cell"><div class="halfCell up"></div><div class="halfCell down"></div></div>
+				<div class="cell currentDay"><div class="halfCell up"></div><div class="halfCell down"></div></div>
+				<div class="cell"><div class="halfCell up"></div><div class="halfCell down"></div></div>
+				<div class="cell"><div class="halfCell up"></div><div class="halfCell down"></div></div>
+				<div class="cell"><div class="halfCell up"></div><div class="halfCell down"></div></div>
+				<div class="cell"><div class="halfCell up"></div><div class="halfCell down"></div></div>
+				<div class="cell"><div class="halfCell up"></div><div class="halfCell down"></div></div>
 			</div>
 			<div class="row">
-				<div class="cell firstCell">9am</div>
-				<div class="cell"><div class="halfCell"></div></div>
-				<div class="cell currentDay"><div class="halfCell"></div></div>
-				<div class="cell"><div class="halfCell"></div></div>
-				<div class="cell"><div class="halfCell"></div></div>
-				<div class="cell"><div class="halfCell"></div></div>
-				<div class="cell"><div class="halfCell"></div></div>
-				<div class="cell"><div class="halfCell"></div></div>
+				<div class="cell firstCell"><span class="hour">9</span><span class="midday">am</span></div>
+				<div class="cell"><div class="halfCell up"></div><div class="halfCell down"></div></div>
+				<div class="cell currentDay"><div class="halfCell up"></div><div class="halfCell down"></div></div>
+				<div class="cell"><div class="halfCell up"></div><div class="halfCell down"></div></div>
+				<div class="cell"><div class="halfCell up"></div><div class="halfCell down"></div></div>
+				<div class="cell"><div class="halfCell up"></div><div class="halfCell down"></div></div>
+				<div class="cell"><div class="halfCell up"></div><div class="halfCell down"></div></div>
+				<div class="cell"><div class="halfCell up"></div><div class="halfCell down"></div></div>
 			</div>
 			<div class="row">
-				<div class="cell firstCell">10am</div>
-				<div class="cell"><div class="halfCell"></div></div>
-				<div class="cell currentDay"><div class="halfCell"></div></div>
-				<div class="cell"><div class="halfCell"></div></div>
-				<div class="cell"><div class="halfCell"></div></div>
-				<div class="cell"><div class="halfCell"></div></div>
-				<div class="cell"><div class="halfCell"></div></div>
-				<div class="cell"><div class="halfCell"></div></div>
+				<div class="cell firstCell"><span class="hour">10</span><span class="midday">am</span></div>
+				<div class="cell"><div class="halfCell up"></div><div class="halfCell down"></div></div>
+				<div class="cell currentDay"><div class="halfCell up"></div><div class="halfCell down"></div></div>
+				<div class="cell"><div class="halfCell up"></div><div class="halfCell down"></div></div>
+				<div class="cell"><div class="halfCell up"></div><div class="halfCell down"></div></div>
+				<div class="cell"><div class="halfCell up"></div><div class="halfCell down"></div></div>
+				<div class="cell"><div class="halfCell up"></div><div class="halfCell down"></div></div>
+				<div class="cell"><div class="halfCell up"></div><div class="halfCell down"></div></div>
 			</div>
 			<div class="row">
-				<div class="cell firstCell">11am</div>
-				<div class="cell"><div class="halfCell"></div></div>
-				<div class="cell currentDay"><div class="halfCell"></div></div>
-				<div class="cell"><div class="halfCell"></div></div>
-				<div class="cell"><div class="halfCell"></div></div>
-				<div class="cell"><div class="halfCell"></div></div>
-				<div class="cell"><div class="halfCell"></div></div>
-				<div class="cell"><div class="halfCell"></div></div>
+				<div class="cell firstCell"><span class="hour">11</span><span class="midday">am</span></div>
+				<div class="cell"><div class="halfCell up"></div><div class="halfCell down"></div></div>
+				<div class="cell currentDay"><div class="halfCell up"></div><div class="halfCell down"></div></div>
+				<div class="cell"><div class="halfCell up"></div><div class="halfCell down"></div></div>
+				<div class="cell"><div class="halfCell up"></div><div class="halfCell down"></div></div>
+				<div class="cell"><div class="halfCell up"></div><div class="halfCell down"></div></div>
+				<div class="cell"><div class="halfCell up"></div><div class="halfCell down"></div></div>
+				<div class="cell"><div class="halfCell up"></div><div class="halfCell down"></div></div>
 			</div>
 			<div class="row">
-				<div class="cell firstCell">12pm</div>
-				<div class="cell"><div class="halfCell"></div></div>
-				<div class="cell currentDay"><div class="halfCell"></div></div>
-				<div class="cell"><div class="halfCell"></div></div>
-				<div class="cell"><div class="halfCell"></div></div>
-				<div class="cell"><div class="halfCell"></div></div>
-				<div class="cell"><div class="halfCell"></div></div>
-				<div class="cell"><div class="halfCell"></div></div>
+				<div class="cell firstCell"><span class="hour">12</span><span class="midday">pm</span></div>
+				<div class="cell"><div class="halfCell up"></div><div class="halfCell down"></div></div>
+				<div class="cell currentDay"><div class="halfCell up"></div><div class="halfCell down"></div></div>
+				<div class="cell"><div class="halfCell up"></div><div class="halfCell down"></div></div>
+				<div class="cell"><div class="halfCell up"></div><div class="halfCell down"></div></div>
+				<div class="cell"><div class="halfCell up"></div><div class="halfCell down"></div></div>
+				<div class="cell"><div class="halfCell up"></div><div class="halfCell down"></div></div>
+				<div class="cell"><div class="halfCell up"></div><div class="halfCell down"></div></div>
 			</div>
 			<div class="row currentHour">
-				<div class="cell firstCell">1pm</div>
-				<div class="cell"><div class="halfCell"></div></div>
-				<div class="cell currentDay"><div class="halfCell"></div></div>
-				<div class="cell"><div class="halfCell"></div></div>
-				<div class="cell"><div class="halfCell"></div></div>
-				<div class="cell"><div class="halfCell"></div></div>
-				<div class="cell"><div class="halfCell"></div></div>
-				<div class="cell"><div class="halfCell"></div></div>
+				<div class="cell firstCell"><span class="hour">1</span><span class="midday">pm</span></div>
+				<div class="cell"><div class="halfCell up"></div><div class="halfCell down"></div></div>
+				<div class="cell currentDay"><div class="halfCell up"></div><div class="halfCell down"></div></div>
+				<div class="cell"><div class="halfCell up"></div><div class="halfCell down"></div></div>
+				<div class="cell"><div class="halfCell up"></div><div class="halfCell down"></div></div>
+				<div class="cell"><div class="halfCell up"></div><div class="halfCell down"></div></div>
+				<div class="cell"><div class="halfCell up"></div><div class="halfCell down"></div></div>
+				<div class="cell"><div class="halfCell up"></div><div class="halfCell down"></div></div>
 			</div>
 			<div class="row">
-				<div class="cell firstCell">2pm</div>
-				<div class="cell"><div class="halfCell"></div></div>
-				<div class="cell currentDay"><div class="halfCell"></div></div>
-				<div class="cell"><div class="halfCell"></div></div>
-				<div class="cell"><div class="halfCell"></div></div>
-				<div class="cell"><div class="halfCell"></div></div>
-				<div class="cell"><div class="halfCell"></div></div>
-				<div class="cell"><div class="halfCell"></div></div>
+				<div class="cell firstCell"><span class="hour">2</span><span class="midday">pm</span></div>
+				<div class="cell"><div class="halfCell up"></div><div class="halfCell down"></div></div>
+				<div class="cell currentDay"><div class="halfCell up"></div><div class="halfCell down"></div></div>
+				<div class="cell"><div class="halfCell up"></div><div class="halfCell down"></div></div>
+				<div class="cell"><div class="halfCell up"></div><div class="halfCell down"></div></div>
+				<div class="cell"><div class="halfCell up"></div><div class="halfCell down"></div></div>
+				<div class="cell"><div class="halfCell up"></div><div class="halfCell down"></div></div>
+				<div class="cell"><div class="halfCell up"></div><div class="halfCell down"></div></div>
 			</div>
 			<div class="row">
-				<div class="cell firstCell">3pm</div>
-				<div class="cell"><div class="halfCell"></div></div>
-				<div class="cell currentDay"><div class="halfCell"></div></div>
-				<div class="cell"><div class="halfCell"></div></div>
-				<div class="cell"><div class="halfCell"></div></div>
-				<div class="cell"><div class="halfCell"></div></div>
-				<div class="cell"><div class="halfCell"></div></div>
-				<div class="cell"><div class="halfCell"></div></div>
+				<div class="cell firstCell"><span class="hour">3</span><span class="midday">pm</span></div>
+				<div class="cell"><div class="halfCell up"></div><div class="halfCell down"></div></div>
+				<div class="cell currentDay"><div class="halfCell up"></div><div class="halfCell down"></div></div>
+				<div class="cell"><div class="halfCell up"></div><div class="halfCell down"></div></div>
+				<div class="cell"><div class="halfCell up"></div><div class="halfCell down"></div></div>
+				<div class="cell"><div class="halfCell up"></div><div class="halfCell down"></div></div>
+				<div class="cell"><div class="halfCell up"></div><div class="halfCell down"></div></div>
+				<div class="cell"><div class="halfCell up"></div><div class="halfCell down"></div></div>
 			</div>
 			<div class="row">
-				<div class="cell firstCell">4pm</div>
-				<div class="cell"><div class="halfCell"></div></div>
-				<div class="cell currentDay"><div class="halfCell"></div></div>
-				<div class="cell"><div class="halfCell"></div></div>
-				<div class="cell"><div class="halfCell"></div></div>
-				<div class="cell"><div class="halfCell"></div></div>
-				<div class="cell"><div class="halfCell"></div></div>
-				<div class="cell"><div class="halfCell"></div></div>
+				<div class="cell firstCell"><span class="hour">4</span><span class="midday">pm</span></div>
+				<div class="cell"><div class="halfCell up"></div><div class="halfCell down"></div></div>
+				<div class="cell currentDay"><div class="halfCell up"></div><div class="halfCell down"></div></div>
+				<div class="cell"><div class="halfCell up"></div><div class="halfCell down"></div></div>
+				<div class="cell"><div class="halfCell up"></div><div class="halfCell down"></div></div>
+				<div class="cell"><div class="halfCell up"></div><div class="halfCell down"></div></div>
+				<div class="cell"><div class="halfCell up"></div><div class="halfCell down"></div></div>
+				<div class="cell"><div class="halfCell up"></div><div class="halfCell down"></div></div>
 			</div>
 			<div class="row">
-				<div class="cell firstCell">5pm</div>
-				<div class="cell"><div class="halfCell"></div></div>
-				<div class="cell currentDay"><div class="halfCell"></div></div>
-				<div class="cell"><div class="halfCell"></div></div>
-				<div class="cell"><div class="halfCell"></div></div>
-				<div class="cell"><div class="halfCell"></div></div>
-				<div class="cell"><div class="halfCell"></div></div>
-				<div class="cell"><div class="halfCell"></div></div>
+				<div class="cell firstCell"><span class="hour">5</span><span class="midday">pm</span></div>
+				<div class="cell"><div class="halfCell up"></div><div class="halfCell down"></div></div>
+				<div class="cell currentDay"><div class="halfCell up"></div><div class="halfCell down"></div></div>
+				<div class="cell"><div class="halfCell up"></div><div class="halfCell down"></div></div>
+				<div class="cell"><div class="halfCell up"></div><div class="halfCell down"></div></div>
+				<div class="cell"><div class="halfCell up"></div><div class="halfCell down"></div></div>
+				<div class="cell"><div class="halfCell up"></div><div class="halfCell down"></div></div>
+				<div class="cell"><div class="halfCell up"></div><div class="halfCell down"></div></div>
 			</div>
 			<div class="row">
-				<div class="cell firstCell">6pm</div>
-				<div class="cell"><div class="halfCell"></div></div>
-				<div class="cell currentDay"><div class="halfCell"></div></div>
-				<div class="cell"><div class="halfCell"></div></div>
-				<div class="cell"><div class="halfCell"></div></div>
-				<div class="cell"><div class="halfCell"></div></div>
-				<div class="cell"><div class="halfCell"></div></div>
-				<div class="cell"><div class="halfCell"></div></div>
+				<div class="cell firstCell"><span class="hour">6</span><span class="midday">pm</span></div>
+				<div class="cell"><div class="halfCell up"></div><div class="halfCell down"></div></div>
+				<div class="cell currentDay"><div class="halfCell up"></div><div class="halfCell down"></div></div>
+				<div class="cell"><div class="halfCell up"></div><div class="halfCell down"></div></div>
+				<div class="cell"><div class="halfCell up"></div><div class="halfCell down"></div></div>
+				<div class="cell"><div class="halfCell up"></div><div class="halfCell down"></div></div>
+				<div class="cell"><div class="halfCell up"></div><div class="halfCell down"></div></div>
+				<div class="cell"><div class="halfCell up"></div><div class="halfCell down"></div></div>
 			</div>
 			<div class="row">
-				<div class="cell firstCell">7pm</div>
-				<div class="cell"><div class="halfCell"></div></div>
-				<div class="cell currentDay"><div class="halfCell"></div></div>
-				<div class="cell"><div class="halfCell"></div></div>
-				<div class="cell"><div class="halfCell"></div></div>
-				<div class="cell"><div class="halfCell"></div></div>
-				<div class="cell"><div class="halfCell"></div></div>
-				<div class="cell"><div class="halfCell"></div></div>
+				<div class="cell firstCell"><span class="hour">7</span><span class="midday">pm</span></div>
+				<div class="cell"><div class="halfCell up"></div><div class="halfCell down"></div></div>
+				<div class="cell currentDay"><div class="halfCell up"></div><div class="halfCell down"></div></div>
+				<div class="cell"><div class="halfCell up"></div><div class="halfCell down"></div></div>
+				<div class="cell"><div class="halfCell up"></div><div class="halfCell down"></div></div>
+				<div class="cell"><div class="halfCell up"></div><div class="halfCell down"></div></div>
+				<div class="cell"><div class="halfCell up"></div><div class="halfCell down"></div></div>
+				<div class="cell"><div class="halfCell up"></div><div class="halfCell down"></div></div>
 			</div>
 			<div class="row">
-				<div class="cell firstCell">8pm</div>
-				<div class="cell"><div class="halfCell"></div></div>
-				<div class="cell currentDay"><div class="halfCell"></div></div>
-				<div class="cell"><div class="halfCell"></div></div>
-				<div class="cell"><div class="halfCell"></div></div>
-				<div class="cell"><div class="halfCell"></div></div>
-				<div class="cell"><div class="halfCell"></div></div>
-				<div class="cell"><div class="halfCell"></div></div>
+				<div class="cell firstCell"><span class="hour">8</span><span class="midday">pm</span></div>
+				<div class="cell"><div class="halfCell up"></div><div class="halfCell down"></div></div>
+				<div class="cell currentDay"><div class="halfCell up"></div><div class="halfCell down"></div></div>
+				<div class="cell"><div class="halfCell up"></div><div class="halfCell down"></div></div>
+				<div class="cell"><div class="halfCell up"></div><div class="halfCell down"></div></div>
+				<div class="cell"><div class="halfCell up"></div><div class="halfCell down"></div></div>
+				<div class="cell"><div class="halfCell up"></div><div class="halfCell down"></div></div>
+				<div class="cell"><div class="halfCell up"></div><div class="halfCell down"></div></div>
 			</div>
 			<div class="row">
-				<div class="cell firstCell">9pm</div>
-				<div class="cell"><div class="halfCell"></div></div>
-				<div class="cell currentDay"><div class="halfCell"></div></div>
-				<div class="cell"><div class="halfCell"></div></div>
-				<div class="cell"><div class="halfCell"></div></div>
-				<div class="cell"><div class="halfCell"></div></div>
-				<div class="cell"><div class="halfCell"></div></div>
-				<div class="cell"><div class="halfCell"></div></div>
+				<div class="cell firstCell"><span class="hour">9</span><span class="midday">pm</span></div>
+				<div class="cell"><div class="halfCell up"></div><div class="halfCell down"></div></div>
+				<div class="cell currentDay"><div class="halfCell up"></div><div class="halfCell down"></div></div>
+				<div class="cell"><div class="halfCell up"></div><div class="halfCell down"></div></div>
+				<div class="cell"><div class="halfCell up"></div><div class="halfCell down"></div></div>
+				<div class="cell"><div class="halfCell up"></div><div class="halfCell down"></div></div>
+				<div class="cell"><div class="halfCell up"></div><div class="halfCell down"></div></div>
+				<div class="cell"><div class="halfCell up"></div><div class="halfCell down"></div></div>
 			</div>
 			<div class="row">
-				<div class="cell firstCell">10pm</div>
-				<div class="cell"><div class="halfCell"></div></div>
-				<div class="cell currentDay"><div class="halfCell"></div></div>
-				<div class="cell"><div class="halfCell"></div></div>
-				<div class="cell"><div class="halfCell"></div></div>
-				<div class="cell"><div class="halfCell"></div></div>
-				<div class="cell"><div class="halfCell"></div></div>
-				<div class="cell"><div class="halfCell"></div></div>
+				<div class="cell firstCell"><span class="hour">10</span><span class="midday">pm</span></div>
+				<div class="cell"><div class="halfCell up"></div><div class="halfCell down"></div></div>
+				<div class="cell currentDay"><div class="halfCell up"></div><div class="halfCell down"></div></div>
+				<div class="cell"><div class="halfCell up"></div><div class="halfCell down"></div></div>
+				<div class="cell"><div class="halfCell up"></div><div class="halfCell down"></div></div>
+				<div class="cell"><div class="halfCell up"></div><div class="halfCell down"></div></div>
+				<div class="cell"><div class="halfCell up"></div><div class="halfCell down"></div></div>
+				<div class="cell"><div class="halfCell up"></div><div class="halfCell down"></div></div>
 			</div>
 			<div class="row">
-				<div class="cell firstCell">11pm</div>
-				<div class="cell"><div class="halfCell"></div></div>
-				<div class="cell currentDay"><div class="halfCell"></div></div>
-				<div class="cell"><div class="halfCell"></div></div>
-				<div class="cell"><div class="halfCell"></div></div>
-				<div class="cell"><div class="halfCell"></div></div>
-				<div class="cell"><div class="halfCell"></div></div>
-				<div class="cell"><div class="halfCell"></div></div>
+				<div class="cell firstCell"><span class="hour">11</span><span class="midday">pm</span></div>
+				<div class="cell"><div class="halfCell up"></div><div class="halfCell down"></div></div>
+				<div class="cell currentDay"><div class="halfCell up"></div><div class="halfCell down"></div></div>
+				<div class="cell"><div class="halfCell up"></div><div class="halfCell down"></div></div>
+				<div class="cell"><div class="halfCell up"></div><div class="halfCell down"></div></div>
+				<div class="cell"><div class="halfCell up"></div><div class="halfCell down"></div></div>
+				<div class="cell"><div class="halfCell up"></div><div class="halfCell down"></div></div>
+				<div class="cell"><div class="halfCell up"></div><div class="halfCell down"></div></div>
 			</div>
 			
 		</div> <!-- calendarGrid -->

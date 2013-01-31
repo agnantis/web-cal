@@ -5,13 +5,14 @@ $(document).ready(function() {
 	$(".draggable").draggable();
 	$(".cell").data("_children", []);
 	$(".cell").droppable({
-			over: function(event, ui) {
-				$(this).css("background-color", "#FDD471");
-					//.css("box-shadow", "inset 0 0 5px 2px #5488EB");
+			_over: function(event, ui) {
+				//$(this).css("background-color", "#FDD471");
+				alert("test");
+				$(ui.draggable).css("background-color", "#3a1232");
 			}
 	});
 	$(".cell").droppable({
-			out: function(event, ui) {
+			_out: function(event, ui) {
 				$(this).css("background-color",  "rgb(250,235,199)");
 					//.css("box-shadow", "none");
 				$(ui.draggable).resizable("destroy");
@@ -19,20 +20,20 @@ $(document).ready(function() {
 	});
 	
 	$(".cell").droppable({
-			drop: function(event, ui) {
+			_drop: function(event, ui) {
 				$(ui.draggable).resizable();
 				addChild($(this), $(ui.draggable));
 			}
 	});
 	
 	$(".cell").droppable({	
-			activate: function(event, ui) {
+			_activate: function(event, ui) {
 				//nothing wet
 			}
 	});
 	
 	$(".cell").droppable({	
-			deactivate: function(event, ui) {
+			_deactivate: function(event, ui) {
 				//nothing yet
 			}
 	});
@@ -60,13 +61,50 @@ $(document).ready(function() {
 		//testing purposes
 	});
 	
-	$(".cell__").click(function() {
-			var userInput = "Event " + (++count);
-			$("<div class=\"draggable\">" + userInput + "</div>")
-			.resizable()
-			.draggable({snap: ".cell"})
-			.appendTo($(this)).css("width", $(".cell").css('width'));
-			alert($(this).uniqueId());
+	$(".halfCell").click(function() {
+		var cellHeight = $(this).outerHeight();
+		var cellWidth = $(this).outerWidth();
+		
+		var userInput = "Event " + (++count);
+		$("<div class='event'><span class='text'>" + userInput + "</span></div>")
+		.resizable({
+			grid: cellHeight,
+			maxWidth: cellWidth-6,
+			minWidth: cellWidth-6,
+			minHeight: cellHeight-8,
+			resize: function(event, ui) {
+				var xpos = ui.position.left + $(ui.element).width()/2;
+				var ypos = ui.position.top + $(ui.element).height();
+				var theCell = $.nearest({x: xpos, y: ypos}, '.halfCell');
+				var newYpos = theCell.position().top + theCell.height() - 8;				
+				$(ui.element).height(newYpos - ui.position.top);
+				
+				var startTime = parseInt($(ui.element).parent().parent().siblings(':first').children('.hour').text());
+				var endTime = parseInt(theCell.parent().siblings(':first').children('.hour').text());
+				if ($(ui.element).parent().hasClass('up')) {
+					startTime += ":00";
+				} else {
+					startTime += ":30";
+				}
+				console.log("From: " + startTime);
+				
+				//upside-down because a filled up cell -> :30 + 1hour
+				if (theCell.hasClass('up')) {
+					endTime += ":30";
+				} else {
+					//plus an hour
+					endTime += 1;
+					endTime += ":00";
+				}
+				console.log("Το: " + endTime);
+				$(ui.element).children(".text").html(startTime + " - " + endTime);
+				//console.log("To: " + theCell.parent().siblings(':first').children('.hour').text());
+			}
+		})
+		.draggable({snap: ".halfCell"})
+		.appendTo($(this))
+		.width(cellWidth-6)
+		.height(cellHeight*2-8);
 	});	
 	
 	dynamicCss();
