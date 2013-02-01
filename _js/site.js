@@ -65,18 +65,29 @@ $(document).ready(function() {
 				ev.css("left", ev.parent().css("left"));
 			},
 		})
-		.hover(
-			function() {
-				$(this).children('.handle').show();
-			},
-			function() {
-				$(this).children('.handle').hide();
-			}
-			
-		);	
+		.click(function(event) {
+			event.stopPropagation();
+			var el = $('#eventDescriptor');
+			var left = event.pageX - el.outerWidth()/2;
+			var top = event.pageY - el.outerHeight() - 20;
+			el.css({
+				"display": "block",
+				"top": top + "px",
+				"left": left + "px"
+			});
+			var arr = $('#eventDescriptor .eArrow');
+			arr.css("left", (el.width())/2 + (arr.width()+2) + "px");
+			arr.css("bottom", (-(arr.width())/2-1) + "px");
+		});	
+		
+		$('#eventDescriptor .ecloseBtn').click(function() {
+			$('#eventDescriptor').css("display", "none"); 
+		});
 		
 		setEventTimeLabel(eventElem, false);
 	});	
+	
+	
 	
 	dynamicCss();
 

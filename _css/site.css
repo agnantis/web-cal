@@ -69,6 +69,97 @@ body {
 	display: none;
 }
 
+.event:hover .handle {
+	display: block;
+}
+
+#eventDescriptor {
+	display: none;
+	position: absolute;
+	border: 1px solid rgba(50, 50, 50, 0.5);
+	box-shadow: 1px 1px 10px rgba(0,0,0,.5);
+	min-width: 400px;
+	/*height: 150px;*/
+	background-color: #fff;
+	z-index: 99999;
+	font-size: 75%;
+	padding: 15px 25px;
+	
+}
+
+#eventDescriptor .eheader {
+	font-weight: bold;
+	color: rgba(187, 85, 32, 1);
+	font-size: 120%;
+}
+
+#eventDescriptor .ecloseBtn {
+	position: absolute;
+	background: url('../_images/closeIcon.png') no-repeat;
+	top: 12px;
+	right: 0px;
+	width: 30px;
+	height: 30px;
+	cursor: pointer;
+}
+
+#eventDescriptor .eArrow {
+	position: absolute;
+	width: 16px;
+	height: 16px;
+	background-color: #fff;
+	/*bottom: -15px;
+	left: 50%;*/
+	border-right: 1px solid rgba(50, 50, 50, 0.5);
+	border-bottom: 1px solid rgba(50, 50, 50, 0.5);
+	transform:rotate(45deg);
+}
+
+
+#eventDescriptor .emain {
+	color: rgba(100, 100, 100, 1);
+}
+
+#eventDescriptor .edate {
+	margin: 20px 0;
+}
+
+#eventDescriptor .einput {
+	clear: both;
+	padding: 2px 0px;
+}
+
+#eventDescriptor .elabel {
+	float: left;
+	font-weight: bold;
+	width: 35%;
+}
+
+#eventDescriptor .efooter {
+	clear: both;
+	border-top: 1px solid rgba(220, 220, 220, 1);
+	padding-top: 15px;
+	margin-top: 5px;
+}
+
+#eventDescriptor a {
+	color: rgba(0, 80, 250, 1);
+	text-decoration: none;
+}
+
+#eventDescriptor a:hover {
+	text-decoration: underline;
+}
+
+#eventDescriptor .fleft {
+	float: left;
+}
+
+#eventDescriptor .fright {
+	float: right;
+	font-weight: bold;
+}
+
 
 #draggable_container {
 	width: 0%;
