@@ -1,5 +1,27 @@
+var count = 0;
+
+var startDragX = 0;
+var startDragY = 0;
+
+var cellWidth = $('.halfCell').outerWidth();
+var cellHeight = $('.halfCell').outerHeight();
+
+var toleranceX = cellWidth - 5;
+var toleranceY = cellHeight - 10;
+
+var eventDiv = 
+		"<div class='event'>\
+			<div class='hourInfo'>\
+				<span id='shour'></span>:<span id='smin'></span> - \
+				<span id='ehour'></span>:<span id='emin'></span>\
+			</div>\
+			<div class='eventInfo'>Really long Event Name with other info\
+			</div>\
+			<div class='handle'>=</div>\
+		</div>"
+
+
 $(document).ready(function() {
-	var count = 0;
 	
 	$(".cell").data("_children", []);
 	
@@ -9,13 +31,14 @@ $(document).ready(function() {
 				addChild($(this), $(ui.draggable));
 			},
 			drop: function(ev, ui) {
-				//var xpos = $(ui.draggable).position().left+10;
-				//var ypos = $(ui.draggable).position().top+10;
-				//var theCell = $.nearest({x: xpos, y: ypos}, '.halfCell');
+				var xpos = $(ui.draggable).position().left+10;
+				var ypos = $(ui.draggable).position().top+10;
+				var theCell = $.nearest({x: xpos, y: ypos}, '.halfCell');
 				//theCell.css('background-color', "#123");
-        //var dropped = ui.draggable;
+        var dropped = ui.draggable;
         //var droppedOn = $(this);
-        //$(dropped).detach().css({top: 0,left: 0}).appendTo(droppedOn);
+        $(dropped).detach().appendTo(theCell).css({"top": 0, "left":0, "position": "relative"});
+        setEventTimeLabel($(dropped), false);
       }
 	});
 	
@@ -35,7 +58,8 @@ $(document).ready(function() {
 		var cellWidth = $(this).outerWidth();
 		
 		var userInput = "event_" + (++count);
-		var eventElem = $("<div class='event'><div class='text'>" + userInput + "</div><div class='handle'>=</div></div>")
+		//var eventElem = $("<div class='event'><div class='text'>" + userInput + "</div><div class='handle'>=</div></div>")
+		var eventElem = $(eventDiv)
 		.attr('id', userInput)
 		.resizable({
 			handles: "s",
@@ -52,15 +76,50 @@ $(document).ready(function() {
 		.width(cellWidth-6)
 		.height(cellHeight*2-8)
 		.draggable({
+			scroll: true,
+			refreshPositions: false,
 			snap: ".halfCell",
 			containment: "#calendarGrid", 
 			grid: [cellWidth-1, cellHeight-1],
-			drag: function(event, ui) {
+			_drag: function(event, ui) {
 				var xpos = $(ui.helper).position().left+10;
 				var ypos = $(ui.helper).position().top+10;
 				var theCell = $.nearest({x: xpos, y: ypos}, '.halfCell');
         $(ui.helper).detach().appendTo(theCell);
 				setEventTimeLabel($(ui.helper), false);
+			},
+			start: function(event, ui) {
+				startDragX = $(this).position().left;
+				startDragY = $(this).position().top;
+				//console.log("X start: " + startDragX);
+				//console.log("Y start: " + startDragY);
+			},
+			drag: function(event, ui) {
+				var currentX = $(this).position().left;
+				var currentY = $(this).position().top;
+				
+				//no need to watch the day changes while dragging an event
+				//if (Math.abs(currentX - startDragX) > toleranceX) {
+				//	var xMove = Math.round((currentX - startDragX) / cellWidth);
+				//	if (xMove != 0) {
+				//		console.log("X movement: " + xMove);
+				//		startDragX = currentX;
+				//		shiftEventTimeLabel($(this), xMove);
+				//	}
+					//console.log("cell movement: "  + $('.halfCell').width());
+					//changeTime
+					//$(this).
+				//}
+				
+				
+				if (Math.abs(currentY - startDragY) > toleranceY) {
+					var yMove = Math.round((currentY - startDragY) / cellHeight);
+					if (yMove != 0) {
+						//console.log("Y movement: " + yMove);
+						startDragY = currentY;
+						shiftEventTimeLabel($(this), yMove);
+					}
+				}
 			},
 			stop: function(event, ui) {
 				var ev = $(ui.helper);
@@ -134,23 +193,65 @@ function setEventTimeLabel(eventElement, updateHeight) {
  * and prints it
  */
 function updateEventTimeLabel(eventElement, destParent) {
-	var startTime = parseInt(eventElement.parent().parent().siblings(':first').children('.hour').text());
-	var endTime = parseInt(destParent.parent().siblings(':first').children('.hour').text());
-	if (eventElement.parent().hasClass('up')) {
-		startTime += ":00";
-	} else {
-		startTime += ":30";
+	var startHour = parseInt(eventElement.parent().parent().siblings(':first').children('.hour').text());
+	var endHour = parseInt(destParent.parent().siblings(':first').children('.hour').text());
+	
+	var startMin = "00";
+	if (eventElement.parent().hasClass('down')) {
+		startMin = "30";
 	}
+	eventElement.find(".hourInfo #shour").html(startHour);
+	eventElement.find(".hourInfo #smin").html(startMin);
 
-	if (destParent.hasClass('up')) { 
-		endTime += ":30";
-	} else {
+	var endMin = "30";
+	if (destParent.hasClass('down')) { 
 		//plus an hour
-		endTime += 1;
-		endTime += ":00";
+		endHour += 1;
+		endMin = "00";
 	}
-	//set time h:mm - h:mm
-	eventElement.children(".text").html(startTime + " - " + endTime);
+	eventElement.find(".hourInfo #ehour").html(endHour);
+	eventElement.find(".hourInfo #emin").html(endMin);
+	console.log("End: " + endHour + ":" + endMin);
+}
+
+function shiftEventTimeLabel(eventElement, noOfHalfHours){
+	var sH = eventElement.find(".hourInfo #shour");
+	var sM = eventElement.find(".hourInfo #smin");
+	var eH = eventElement.find(".hourInfo #ehour");
+	var eM = eventElement.find(".hourInfo #emin");
+	
+	var sRem = 0;
+	var eRem = 0;
+	
+	if ((noOfHalfHours % 2) != 0) {
+		//change minutes
+		if (sM.html() == "30") {
+			sM.html("00");
+			if (noOfHalfHours>0) { sRem = 1 }
+		} else {
+			sM.html("30");
+			if (noOfHalfHours<0) { sRem = -1 }
+		}
+		if (eM.html() == "30") {
+			eM.html("00");
+			if (noOfHalfHours>0) { eRem = 1 }
+		} else {
+			eM.html("30");
+			if (noOfHalfHours<0) { eRem = -1 }
+		}
+	} 
+	
+	var sHour = parseInt(sH.html());
+	var eHour = parseInt(eH.html());
+	
+	var shiftHours = (noOfHalfHours > 0) ? Math.floor(noOfHalfHours/2) : Math.ceil(noOfHalfHours/2)
+	
+	var newSHour = Math.abs(sRem+sHour+shiftHours) % 12;
+	if (newSHour == 0) { newSHour = 12; }
+	var newEHour = Math.abs(eRem+eHour+shiftHours) % 12;
+	if (newEHour == 0) { newEHour = 12; }
+	sH.html(newSHour);
+	eH.html(newEHour);
 }
 
 function dynamicCss() {

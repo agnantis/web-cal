@@ -44,20 +44,26 @@ body {
 .event {
 	text-align: left;	
 	/*padding: 1px;*/
-	font-size: 60%;
-	font-weight: bold;
-	text-transform: uppercase;
-	color: #444;
+	/*text-transform: uppercase;*/
 	background-color: rgba(255, 116, 116, 0.65);
 	border: 1px solid rgba(255, 80, 80, 1);
 	float: left;
 	cursor: pointer;
 	overflow: hidden;
 	position: relative;
+	font-size: 65%;
 }
 
-.event .text {
+.event .hourInfo {
+	color: #444;
 	padding: 1px;
+	font-weight: bold;
+}
+
+.event .eventInfo {
+	clear: both;
+	padding: 1px;
+	color: #444;
 }
 
 .event .handle {
