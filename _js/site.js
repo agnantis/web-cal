@@ -29,11 +29,14 @@ $(document).ready(function() {
 	});
 	
 	$(".halfCell").click(function() {
+		//hide any event details popup
+		$('#eventDescriptor').hide();
 		var cellHeight = $(this).outerHeight();
 		var cellWidth = $(this).outerWidth();
 		
-		var userInput = "Event " + (++count);
+		var userInput = "event_" + (++count);
 		var eventElem = $("<div class='event'><div class='text'>" + userInput + "</div><div class='handle'>=</div></div>")
+		.attr('id', userInput)
 		.resizable({
 			handles: "s",
 			grid: cellHeight,
@@ -78,10 +81,21 @@ $(document).ready(function() {
 			var arr = $('#eventDescriptor .eArrow');
 			arr.css("left", (el.width())/2 + (arr.width()+2) + "px");
 			arr.css("bottom", (-(arr.width())/2-1) + "px");
+			//populate it
+			el.children('#eventIDHolder').attr('eventID', $(this).attr('id'));
+			console.log("test: " + el.children('#eventIDHolder').attr('eventID'));
 		});	
 		
 		$('#eventDescriptor .ecloseBtn').click(function() {
 			$('#eventDescriptor').css("display", "none"); 
+		});
+		
+		$('#eventDescriptor .deleteEvent').click(function() {
+			var eventId = $(this).parents('#eventDescriptor').children('#eventIDHolder').attr('eventID');
+			console.log("Delete event: " + eventId);
+			$("#" + eventId).remove();
+			$('#eventDescriptor').hide();
+			
 		});
 		
 		setEventTimeLabel(eventElem, false);
