@@ -1,5 +1,6 @@
 var count = 0;
 
+/* specific to dragging events around */
 var startDragX = 0;
 var startDragY = 0;
 
@@ -9,13 +10,18 @@ var cellHeight = $('.halfCell').outerHeight();
 var toleranceX = cellWidth - 5;
 var toleranceY = cellHeight - 10;
 
+/* specific to editing event popup */
+var unsavedChanges = false; //may not in use
+var currentValue = ""; //current event name
+
+
 var eventDiv = 
 		"<div class='event'>\
 			<div class='hourInfo'>\
 				<span id='shour'></span>:<span id='smin'></span> - \
 				<span id='ehour'></span>:<span id='emin'></span>\
 			</div>\
-			<div class='eventInfo'>Really long Event Name with other info\
+			<div class='eventInfo'>Event Name\
 			</div>\
 			<div class='handle'>=</div>\
 		</div>"
@@ -142,8 +148,45 @@ $(document).ready(function() {
 			arr.css("bottom", (-(arr.width())/2-1) + "px");
 			//populate it
 			el.children('#eventIDHolder').attr('eventID', $(this).attr('id'));
-			console.log("test: " + el.children('#eventIDHolder').attr('eventID'));
 		});	
+		
+		$('#eventDescriptor .eheader')
+		.focus(function() {
+			//change some appearence
+			$(this).css({
+				'border': '1px solid rgba(91, 93, 254, 0.7)',
+				'padding': '10px'
+			});
+			$('#eventDescriptor .editGroup').removeClass('hideme');
+			$('#eventDescriptor .deleteEvent').addClass('hideme');
+			$('#eventDescriptor .editEvent').addClass('hideme');
+			$('#eventDescriptor .ecloseBtn').addClass('hideme');
+			currentValue = $(this).val();
+			console.log('current value: ' + currentValue);
+			//add an invisible layer
+			$('.overlay').removeClass('hideme');
+			
+		})
+		.blur(function(e) {
+			//should press one button
+			var newValue = $(this).val();
+			if (unsavedChanges || (newValue != currentValue)){
+				//$('.overlay').removeClass('hideme');
+				unsavedChanges = true;
+				$('.overlay').css('background-color', 'rgba(255, 255, 255, 0.8)');
+			} else {
+				//unsavedChanges = false;
+				$('.overlay').addClass('hideme');
+				$('#eventDescriptor .editGroup').addClass('hideme');
+				$('#eventDescriptor .deleteEvent').removeClass('hideme');
+				$('#eventDescriptor .editEvent').removeClass('hideme');
+				$('#eventDescriptor .ecloseBtn').removeClass('hideme');
+				$(this).css({
+				'border': 'none',
+				'padding': '0'
+			});
+			}
+		});
 		
 		$('#eventDescriptor .ecloseBtn').click(function() {
 			$('#eventDescriptor').css("display", "none"); 
@@ -157,6 +200,13 @@ $(document).ready(function() {
 			
 		});
 		
+		$('.overlay').click(function(e) {
+			if (unsavedChanges == true) { 
+				console.log('Do nothing');
+				//e.stopPropagation(); 
+				$('#eventDescriptor .eheader').focus();
+			}			
+		});
 		setEventTimeLabel(eventElem, false);
 	});	
 	
