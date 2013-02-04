@@ -13,7 +13,7 @@
 	<script src="_js/site.js"></script>
 </head>
 <body>
-	<div class="overlay hideme"></div>
+	<div class="overlay"></div>
 	<div id="eventDescriptor">
 		<input type="hidden" id="eventIDHolder" eventID="event1"></input>
 		<input type="text" name="eventName" value="PhD Meeting - Κώστας Αγναντής" class="eheader"/>
@@ -37,10 +37,10 @@
 			</div>
 		</div>
 		<div class="efooter">
-			<a class="fleft deleteEvent editGroup" href="#">Delete</a>
-			<div class="hideme button fleft editGroup">Discard changes</div>
-			<a class="fright editEvent editGroup" href="#">Edit Event »</a>
-			<div class="hideme button fright editGroup">Save</div>
+			<a class="fleft deleteEvent deleteBtn" href="#">Delete</a>
+			<div id="discardBtn" class="hideme button fleft editGroup">Discard changes</div>
+			<a class="fright editEvent" href="#">Edit Event »</a>
+			<div id="saveBtn" class="hideme button fright editGroup">Save</div>
 		</div>
 		<div class="ecloseBtn"></div>
 		<div class="eArrow"></div>

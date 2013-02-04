@@ -12,6 +12,7 @@ var toleranceY = cellHeight - 10;
 
 /* specific to editing event popup */
 var unsavedChanges = false; //may not in use
+var releaseBtnPressed = false; //set to true if save/discard button pressed
 var currentValue = ""; //current event name
 
 
@@ -148,7 +149,19 @@ $(document).ready(function() {
 			arr.css("bottom", (-(arr.width())/2-1) + "px");
 			//populate it
 			el.children('#eventIDHolder').attr('eventID', $(this).attr('id'));
+			currentValue = $('#eventDescriptor .eheader').val();
+			console.log('CV: ' + currentValue);
+			//add an invisible layer
+			releaseBtnPressed = false;
+			unsavedChanges = false;
+			$('.overlay').show();
 		});	
+		
+		//when lose focus, trigggers if there is a change in value
+		$('#eventDescriptor .eheader').change(function(){
+			console.log("value changed: " + $(this).val());
+			unsavedChanges = true;
+		});
 		
 		$('#eventDescriptor .eheader')
 		.focus(function() {
@@ -161,30 +174,20 @@ $(document).ready(function() {
 			$('#eventDescriptor .deleteEvent').addClass('hideme');
 			$('#eventDescriptor .editEvent').addClass('hideme');
 			$('#eventDescriptor .ecloseBtn').addClass('hideme');
-			currentValue = $(this).val();
-			console.log('current value: ' + currentValue);
+			
 			//add an invisible layer
-			$('.overlay').removeClass('hideme');
+			//$('.overlay').removeClass('hideme');
 			
 		})
 		.blur(function(e) {
+			console.log('focus lost: ' +unsavedChanges);
 			//should press one button
-			var newValue = $(this).val();
-			if (unsavedChanges || (newValue != currentValue)){
-				//$('.overlay').removeClass('hideme');
-				unsavedChanges = true;
+			if (unsavedChanges && !releaseBtnPressed ){
+				console.log('blur in if');
 				$('.overlay').css('background-color', 'rgba(255, 255, 255, 0.8)');
 			} else {
-				//unsavedChanges = false;
-				$('.overlay').addClass('hideme');
-				$('#eventDescriptor .editGroup').addClass('hideme');
-				$('#eventDescriptor .deleteEvent').removeClass('hideme');
-				$('#eventDescriptor .editEvent').removeClass('hideme');
-				$('#eventDescriptor .ecloseBtn').removeClass('hideme');
-				$(this).css({
-				'border': 'none',
-				'padding': '0'
-			});
+				console.log('blur in else');
+				resetEventPopup(false);
 			}
 		});
 		
@@ -201,13 +204,29 @@ $(document).ready(function() {
 		});
 		
 		$('.overlay').click(function(e) {
-			if (unsavedChanges == true) { 
+			console.log('Overlay pressed');
+			if (unsavedChanges) { 
 				console.log('Do nothing');
 				//e.stopPropagation(); 
 				$('#eventDescriptor .eheader').focus();
-			}			
+			}	else {
+				console.log('Hide Them');
+				resetEventPopup(true);
+			}
 		});
 		setEventTimeLabel(eventElem, false);
+		
+		$('#discardBtn').click(function(e) {
+			$('#eventDescriptor .eheader').val(currentValue);
+			resetEventPopup(true);
+			releaseBtnPressed = true;
+		});
+		
+		$('#saveBtn').click(function(e) {
+			currentValue = $('#eventDescriptor .eheader').val();
+			resetEventPopup(true);	
+			releaseBtnPressed = true;		
+		});
 	});	
 	
 	
@@ -220,6 +239,25 @@ $(document).ready(function() {
 	
 }); // end ready
 
+
+function resetEventPopup(hide) {
+	unsavedChanges = false;
+	var el = $('#eventDescriptor');
+	
+	$('.overlay').hide(); //addClass('hideme');
+	el.find('.editGroup').addClass('hideme');
+	el.find('.deleteEvent').removeClass('hideme');
+	el.find('.editEvent').removeClass('hideme');
+	el.find('.ecloseBtn').removeClass('hideme');
+	el.find('.eheader').css({
+		'border': 'none',
+		'padding': '0'
+	});
+			
+	if (hide) {
+		el.hide();
+	}
+}
 /* eventElement: the new event div
  * updateHeight: if true update element height
  * it computes the starting and ending time of the event
